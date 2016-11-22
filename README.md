@@ -6,7 +6,8 @@ Requirement:
 g++ at least version 4.9.
 
 Installation:
-make
+(1) unzip all zipped files in "coin-Clp" folder.
+(2) make
 
 How to run the simulator: ./main [options]
 
