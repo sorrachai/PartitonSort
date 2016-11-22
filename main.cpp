@@ -71,8 +71,6 @@ int main(int argc, char* argv[]) {
 		printf("\t-o <file> Output File\n");
 		printf("\t-c <classifier> Classifier\n");
 		printf("\t-m <mode> Classification Mode\n");
-		printf("\t-d [<database> Database File]\n");
-		printf("\t-b [<partitioning mode> Partitioning Mode]\n");
 		exit(0);
 	}
 	
