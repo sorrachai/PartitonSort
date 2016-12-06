@@ -151,7 +151,6 @@ enum ClassifierTests {
 	TestPriorityTuple = 0x0002,
 	TestHyperSplit = 0x0004,
 	TestHyperCuts = 0x0008,
-	TestSaxPac = 0x0010,
 	TestAll = 0xFFFFFFFF
 };
 

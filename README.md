@@ -5,9 +5,7 @@ Tested on Ubuntu 14.04.4 LTS.
 Requirement:
 g++ at least version 4.9.
 
-Installation:
-(1) unzip all zipped files in "coin-Clp" folder.
-(2) make
+Installation: make
 
 How to run the simulator: ./main [options]
 
@@ -17,7 +15,7 @@ select modes:  m="Classification", "Update", or "Validate" (Default: classificat
 
 select output path and filename.csv: o="Output/64k_fw1_seed_1.csv"
 
-select classifiers: c="PartitionSort,PriorityTuple". It is possible to run multiple classifiers. (Classifiers: "PartitionSort", "PriorityTuple", "SaxPac", "HyperCuts", "HyperSplit", "All") 
+select classifiers: c="PartitionSort,PriorityTuple". It is possible to run multiple classifiers. (Classifiers: "PartitionSort", "PriorityTuple", "HyperCuts", "HyperSplit", "All") 
 
 Try now (no space between = sign):
 
@@ -25,9 +23,7 @@ Try now (no space between = sign):
 
 Note: 
 
-We obtained the coin-Clp library from the following source:
-
-svn co https://projects.coin-or.org/svn/Clp/stable/1.16 coin-Clp
+In the code, we set to run repeatedly 10 times during classification or updates and then report the average. 
 
 You can find rulesets that we used in experiment in Rulesets folder.
 
