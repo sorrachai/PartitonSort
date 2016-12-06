@@ -9,7 +9,6 @@
 
 #include "OVS/TupleSpaceSearch.h"
 #include "ClassBenchTraceGenerator/trace_tools.h"
-#include "SaxPac/SaxPac.h"
 
 #include "PartitionSort/PartitionSort.h"
 #include <stdio.h>
@@ -39,19 +38,11 @@ void RunValidation(const unordered_map<string, string>& args, const vector<Packe
 ClassifierTests ParseClassifier(const string& line); 
 TestMode ParseMode(const string& mode);
 
-/*
- * TODO: Parameters
- * -f Filter File
- * -p Packet File
- * -o Output file
- * -c Classifier
- * -m Mode
- * -d Database file
- */
+
 int main(int argc, char* argv[]) {
 	unordered_map<string, string> args = ParseArgs(argc, argv);
 
-	string filterFile = GetOrElse(args, "f", "Buckets\\32k_1\\acl2_seed_1.rules");
+	string filterFile = GetOrElse(args, "f", "fw1_seed_1.rules");
 	string packetFile = GetOrElse(args, "p", "Auto");
 	string outputFile = GetOrElse(args, "o", "");
 
@@ -128,10 +119,6 @@ pair< vector<string>, vector<map<string, string>>>  RunSimulatorOnlyClassificati
 	if (tests & ClassifierTests::TestPriorityTuple) {
 		PriorityTupleSpaceSearch ptss;
 		RunSimulatorClassificationTrial(s, "PriorityTuple", ptss, data);
-	}
-	if (tests & ClassifierTests::TestSaxPac) {
-		sp::SaxPac sp(args);
-		RunSimulatorClassificationTrial(s, "SaxPac", sp, data);
 	}
 	if (tests & ClassifierTests::TestHyperCuts) {
 		HyperCuts hc;
@@ -275,9 +262,6 @@ ClassifierTests ParseClassifier(const string& line) {
 		}
 		else if (classifier == "HyperCuts") {
 			tests = tests | TestHyperCuts;
-		}
-		else if (classifier == "SaxPac") {
-			tests = tests | TestSaxPac;
 		}
 		else if (classifier == "All") {
 			tests = tests | TestAll;

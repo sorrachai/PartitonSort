@@ -1,17 +1,11 @@
 # Variables to control Makefile operation
 
-COIN = coin-Clp
-INCLUDE = -I$(COIN)/include/coin
-LIBDIR = $(COIN)
-LIBS = $(COIN)/lib/libClp.a $(COIN)/lib/libCoinUtils.a
-
 OVSPATH = OVS/
 IOPATH = IO/
 MITPATH = PartitionSort/
 TRACEPATH = ClassBenchTraceGenerator/
 TREEPATH = Trees/
 UTILPATH = Utilities/
-SPPATH = SaxPac/
 
 VPATH = $(OVSPATH) $(MITPATH) $(TRACEPATH) $(IOPATH) $(UTILPATH) $(TREEPATH) $(SPPATH) 
 
@@ -20,8 +14,8 @@ CXXFLAGS = -g -std=c++14  -fpermissive -O3 $(INCLUDE)
 
 # Targets needed to bring the executable up to date
 
-main: main.o Simulation.o InputReader.o OutputWriter.o trace_tools.o  SortableRulesetPartitioner.o misc.o OptimizedMITree.o PartitionSort.o red_black_tree.o stack.o cmap.o TupleSpaceSearch.o GridOfTries.o IndependentSetRectangles.o SaxPac.o  HyperCuts.o HyperSplit.o  TreeUtils.o IntervalUtilities.o EffectiveGrid.o MapExtensions.o Tcam.o
-	$(CXX) $(CXXFLAGS) -o main *.o $(LIBS)
+main: main.o Simulation.o InputReader.o OutputWriter.o trace_tools.o  SortableRulesetPartitioner.o misc.o OptimizedMITree.o PartitionSort.o red_black_tree.o stack.o cmap.o TupleSpaceSearch.o  HyperCuts.o HyperSplit.o  TreeUtils.o IntervalUtilities.o  MapExtensions.o Tcam.o
+	$(CXX) $(CXXFLAGS) -o main *.o 
 
 # -------------------------------------------------------------------
 
@@ -68,17 +62,6 @@ cmap.o: cmap.cpp cmap.h hash.h ElementaryClasses.h random.h
 TupleSpaceSearch.o: TupleSpaceSearch.cpp TupleSpaceSearch.h Simulation.h ElementaryClasses.h cmap.h hash.h
 	$(CXX) $(CXXFLAGS) -c $(OVSPATH)TupleSpaceSearch.cpp
 
-# ** SAX-PAC **
-
-GridOfTries.o: GridOfTries.cpp GridOfTries.h
-	$(CXX) $(CXXFLAGS) -c  $(SPPATH)GridOfTries.cpp
-
-IndependentSetRectangles.o: IndependentSetRectangles.cpp IndependentSetRectangles.h
-	$(CXX) $(CXXFLAGS) -c  $(SPPATH)IndependentSetRectangles.cpp
-
-SaxPac.o: SaxPac.cpp SaxPac.h GridOfTries.h IndependentSetRectangles.h Simulation.h ElementaryClasses.h
-	$(CXX) $(CXXFLAGS) -c $(SPPATH)SaxPac.cpp
-
 # ** Trees **
 
 HyperCuts.o: HyperCuts.cpp HyperCuts.h Simulation.h ElementaryClasses.h
@@ -93,9 +76,6 @@ TreeUtils.o: TreeUtils.cpp TreeUtils.h Simulation.h ElementaryClasses.h
 # ** Utils **
 IntervalUtilities.o: IntervalUtilities.cpp IntervalUtilities.h ElementaryClasses.h
 	$(CXX) $(CXXFLAGS) -c $(UTILPATH)IntervalUtilities.cpp
-
-EffectiveGrid.o : EffectiveGrid.cpp EffectiveGrid.h ElementaryClasses.h
-	$(CXX) $(CXXFLAGS) -c $(UTILPATH)EffectiveGrid.cpp
 
 MapExtensions.o : MapExtensions.cpp MapExtensions.h
 	$(CXX) $(CXXFLAGS) -c $(UTILPATH)MapExtensions.cpp
